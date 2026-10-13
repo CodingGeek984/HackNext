@@ -1,4 +1,5 @@
 import heroShape from '../images/Path.png'
+import { IconArrow } from './Icons'
 
 const HERO_FEATURES = [
   'Построй план твоего поступления',
@@ -9,6 +10,10 @@ const HERO_FEATURES = [
 ]
 
 export default function Hero() {
+  const scrollToTest = () => {
+    document.getElementById('test')?.scrollIntoView({ behavior: 'smooth' })
+  }
+
   return (
     <header className="hero">
       <span className="hero__glow hero__glow--one" />
@@ -58,6 +63,14 @@ export default function Hero() {
                 Начать бесплатно
               </a>
               <span className="hero__note">Без карты · 2 минуты на старт</span>
+              <button
+                type="button"
+                className="btn btn-ghost hero__cta-btn"
+                onClick={scrollToTest}
+              >
+                Пройти тест
+                <IconArrow />
+              </button>
             </div>
           </div>
 

@@ -3,6 +3,7 @@ import Features from './components/Features'
 import Roadmap from './components/Roadmap'
 import Comparison from './components/Comparison'
 import CtaBanner from './components/CtaBanner'
+import Quiz from './components/Quiz'
 
 const CURRENT_YEAR = new Date().getFullYear()
 
@@ -14,6 +15,7 @@ function App() {
         <Features />
         <Roadmap />
         <Comparison />
+        <Quiz />
         <CtaBanner />
       </main>
       <footer className="footer">
