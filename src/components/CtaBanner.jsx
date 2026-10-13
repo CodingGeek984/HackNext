@@ -1,4 +1,5 @@
 import mascot from '../images/Rectangle.png'
+import mobileMascot from '../images/img.png'
 
 export default function CtaBanner() {
   return (
@@ -23,12 +24,15 @@ export default function CtaBanner() {
 
           <div className="cta__media">
             <span className="cta__orb" aria-hidden="true" />
-            <img
-              className="cta__mascot"
-              src={mascot}
-              alt="Талисман VentorMe — снежный барс"
-              loading="lazy"
-            />
+            <picture>
+              <source media="(max-width: 640px)" srcSet={mobileMascot} />
+              <img
+                className="cta__mascot"
+                src={mascot}
+                alt="Талисман VentorMe — снежный барс"
+                loading="lazy"
+              />
+            </picture>
           </div>
         </div>
       </div>

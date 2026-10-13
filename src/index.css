@@ -2426,3 +2426,182 @@ body {
     align-self: center;
   }
 }
+
+/* Keep the feature ribbon distinctly blue and visible behind the cards. */
+.features__ribbon-img {
+  filter: hue-rotate(-18deg) saturate(1.2);
+  opacity: 0.9;
+}
+
+@media (max-width: 640px) {
+  .features__ribbon-img {
+    width: 220%;
+    opacity: 0.55;
+  }
+}
+
+/* Let the feature mascots sit over the card edges, as in the references. */
+.bento__card {
+  overflow: visible;
+}
+
+.bento__card--badge-corner,
+.bento__card--badge-white {
+  position: relative;
+  padding-right: 118px;
+}
+
+.mascot-orb--corner {
+  right: -16px;
+  bottom: -18px;
+  width: 160px;
+  height: 160px;
+  padding: 6px;
+  z-index: 2;
+}
+
+.mascot-orb--corner .mascot-orb__img {
+  height: 148px;
+}
+
+.mascot-orb--white {
+  position: absolute;
+  right: -18px;
+  bottom: -20px;
+  width: 160px;
+  height: 160px;
+  padding: 6px;
+  z-index: 2;
+}
+
+.mascot-orb--white .mascot-orb__img {
+  height: 148px;
+}
+
+.mascot-orb {
+  overflow: visible;
+}
+
+@media (max-width: 640px) {
+  .bento__card--badge-corner,
+  .bento__card--badge-white {
+    display: block;
+    padding-right: 104px;
+  }
+
+  .bento__card--badge-corner .bento__body,
+  .bento__card--badge-white .bento__body {
+    width: 100%;
+  }
+
+  .mascot-orb--corner {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    bottom: auto;
+    width: 84px;
+    height: 84px;
+    padding: 0;
+    transform: translateY(-50%);
+  }
+
+  .mascot-orb--corner .mascot-orb__img {
+    height: 100px;
+    max-width: none;
+    transform: translateY(3px);
+  }
+
+  .mascot-orb--white {
+    top: 28px;
+    right: 20px;
+    bottom: auto;
+    width: 90px;
+    height: 90px;
+    padding: 0;
+  }
+
+  .mascot-orb--white .mascot-orb__img {
+    height: 128px;
+    max-width: none;
+    transform: translateY(16px);
+  }
+}
+
+/* Match the mascot badges and overlaps in the supplied feature section. */
+@media (min-width: 641px) {
+  .bento__card--badge-corner {
+    min-height: 210px;
+    padding-bottom: 32px;
+  }
+
+  .bento__card--badge-white {
+    min-height: 210px;
+    padding: 32px 118px 32px 32px;
+  }
+
+  .mascot-orb--corner {
+    top: 65px;
+    right: 24px;
+    bottom: auto;
+    width: 112px;
+    height: 112px;
+    padding: 0;
+    transform: none;
+    background: var(--pink-accent);
+    border: 0;
+    box-shadow: none;
+  }
+
+  .mascot-orb--corner .mascot-orb__img {
+    height: 150px;
+    transform: translateY(2px);
+  }
+
+  .mascot-orb--white {
+    top: 24px;
+    right: 10px;
+    bottom: auto;
+    width: 132px;
+    height: 132px;
+    padding: 0;
+    background: var(--lime-accent);
+    box-shadow: none;
+  }
+
+  .mascot-orb--white .mascot-orb__img {
+    height: 190px;
+    transform: translateY(14px);
+  }
+}
+
+@media (max-width: 640px) {
+  .bento__card--badge-corner,
+  .bento__card--badge-white {
+    min-height: 160px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .mascot-orb--corner {
+    top: 50%;
+    right: 20px;
+    width: 84px;
+    height: 84px;
+    transform: translateY(-50%);
+  }
+
+  .mascot-orb--corner .mascot-orb__img {
+    height: 100px;
+  }
+
+  .mascot-orb--white {
+    top: 28px;
+    right: 20px;
+    width: 90px;
+    height: 90px;
+  }
+
+  .mascot-orb--white .mascot-orb__img {
+    height: 128px;
+  }
+}
