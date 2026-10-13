@@ -1012,11 +1012,29 @@ button {
 }
 
 .quiz-card--intro {
+  position: relative;
+  overflow: hidden;
   background: #dfff00;
   padding: 36px;
   min-height: 320px;
   display: flex;
   flex-direction: column;
+}
+
+.quiz-card__venti {
+  position: absolute;
+  right: -22px;
+  bottom: -18px;
+  width: 265px;
+  height: auto;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+.quiz-card--intro > *:not(.quiz-card__venti) {
+  position: relative;
+  z-index: 1;
 }
 
 .quiz-badges {
@@ -1077,10 +1095,24 @@ button {
 }
 
 .quiz-card--result {
+  position: relative;
+  overflow: hidden;
   background: #fff;
   border: 1px solid #eceaf0;
   box-shadow: 0 30px 60px -30px rgba(58, 58, 58, 0.18);
   padding: 36px;
+}
+
+.quiz-card__venti--gift {
+  top: 14px;
+  right: 14px;
+  bottom: auto;
+  width: 148px;
+}
+
+.quiz-card--result > *:not(.quiz-card__venti) {
+  position: relative;
+  z-index: 1;
 }
 
 .quiz-label {
@@ -2333,6 +2365,18 @@ body {
   .quiz-card--intro {
     padding: 24px 20px;
     min-height: 280px;
+  }
+
+  .quiz-card__venti {
+    width: 190px;
+    right: -16px;
+    bottom: -12px;
+  }
+
+  .quiz-card__venti--gift {
+    width: 112px;
+    top: 10px;
+    right: 10px;
   }
 
   .quiz-intro-title {

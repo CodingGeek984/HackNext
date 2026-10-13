@@ -1,4 +1,6 @@
 import { useMemo, useState } from 'react'
+import ventiQuiz from '../images/venti-quiz.webp'
+import ventiGift from '../images/venti-gift.webp'
 
 const REGISTER_URL =
   'https://ventorme.ai/register?utm_source=hacknext&utm_campaign=team-052'
@@ -296,6 +298,12 @@ export default function Quiz() {
         <div className="quiz">
           {phase === 'intro' && (
             <div className="quiz-card quiz-card--intro">
+              <img
+                className="quiz-card__venti"
+                src={ventiQuiz}
+                alt=""
+                aria-hidden="true"
+              />
               <div className="quiz-badges">
                 <span className="quiz-badge">2 мин</span>
                 <span className="quiz-badge">Бесплатно</span>
@@ -402,6 +410,12 @@ export default function Quiz() {
 
           {phase === 'result' && (
             <div className="quiz-card quiz-card--result">
+              <img
+                className="quiz-card__venti quiz-card__venti--gift"
+                src={ventiGift}
+                alt=""
+                aria-hidden="true"
+              />
               <span className="quiz-label">Готово! Твой результат</span>
               <h3 className="quiz-result-title">
                 Мы подобрали твои направления
