@@ -1,4 +1,3 @@
-import { IconCheck } from './Icons'
 import heroShape from '../images/Path.png'
 
 const HERO_FEATURES = [
@@ -25,9 +24,6 @@ export default function Hero() {
       <div className="container">
         <div className="hero__top">
           <a className="brand" href="#top">
-            <span className="brand__mark" aria-hidden="true">
-              V
-            </span>
             VentorMe
           </a>
           <nav className="nav" aria-label="Основная навигация">
@@ -65,18 +61,20 @@ export default function Hero() {
             </div>
           </div>
 
-          <aside className="hero__card" aria-label="Возможности платформы">
-            <p className="hero__card-label">Что внутри</p>
-            <ul className="feature-list">
-              {HERO_FEATURES.map((feature) => (
-                <li className="feature-list__item" key={feature}>
-                  <span className="check-dot" aria-hidden="true">
-                    <IconCheck />
-                  </span>
-                  {feature}
-                </li>
-              ))}
-            </ul>
+          <aside
+            className="hero__card"
+            aria-label="Все что нужно в одной платформе"
+          >
+            <div className="hero__card-inner">
+              <p className="hero__card-label">Все что нужно в одной платформе</p>
+              <ul className="feature-list">
+                {HERO_FEATURES.map((feature) => (
+                  <li className="feature-list__item" key={feature}>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </aside>
         </div>
       </div>

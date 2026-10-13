@@ -45,10 +45,6 @@ export default function Comparison() {
             <h2 className="compare__title">
               Всё для поступления — в одном месте
             </h2>
-            <p className="compare__sub">
-              Обычный ИИ-чат отвечает на вопросы. Ventorme ведёт тебя к
-              зачислению.
-            </p>
           </div>
 
           <div className="compare__scroll">
@@ -79,10 +75,6 @@ export default function Comparison() {
               </tbody>
             </table>
           </div>
-
-          <p className="compare__foot">
-            * Без сохранения профиля, прогресса и персонального плана.
-          </p>
         </div>
       </div>
     </section>

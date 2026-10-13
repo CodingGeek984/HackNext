@@ -71,7 +71,6 @@ export default function Features() {
 
       <div className="container">
         <div className="section__head">
-          <span className="section__eyebrow">Платформа</span>
           <h2 className="section__title">Все что нужно в одной платформе</h2>
         </div>
 

@@ -203,7 +203,6 @@ export default function Roadmap() {
     <section className="section roadmap" id="roadmap">
       <div className="container">
         <div className="section__head">
-          <span className="section__eyebrow">Ventorme Plus</span>
           <h2 className="section__title">
             Твой путь поступления с Ventorme Plus
           </h2>
