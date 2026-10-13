@@ -149,6 +149,13 @@ const AXES = {
 const OPTION_KEYS = ['a', 'b', 'c', 'd']
 const SCALE_VALUES = [1, 2, 3, 4, 5]
 
+const TEASER = [
+  { emoji: '🧠', name: 'AI-аналитик', pct: 100 },
+  { emoji: '💻', name: 'Data Science', pct: 96 },
+  { emoji: '🛠️', name: 'Инженерия', pct: 89 },
+  { emoji: '🖌️', name: 'Дизайн', pct: 88 },
+]
+
 function computeLeadingAxis(answers) {
   const scores = { a: 0, b: 0, c: 0, d: 0 }
 
@@ -312,6 +319,17 @@ export default function Quiz() {
                 Ответь на <span>8 вопросов</span> и получи личный план
                 поступления
               </p>
+              <ul className="quiz-teaser" aria-hidden="true">
+                {TEASER.map((item) => (
+                  <li className="quiz-teaser__row" key={item.name}>
+                    <span className="quiz-teaser__emoji" aria-hidden="true">
+                      {item.emoji}
+                    </span>
+                    <span className="quiz-teaser__name">{item.name}</span>
+                    <span className="quiz-teaser__pct">{item.pct}%</span>
+                  </li>
+                ))}
+              </ul>
               <button type="button" className="quiz-start" onClick={handleStart}>
                 Начать тест
               </button>
