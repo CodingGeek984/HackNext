@@ -1,6 +1,6 @@
 :root {
-  --purple-main: #6c2bd9;
-  --purple-deep: #521fb0;
+  --purple-main: #3b47ff;
+  --purple-deep: #2f3ae0;
   --lime-accent: #ccff00;
   --pink-accent: #ff007a;
   --text-dark: #111111;
@@ -12,7 +12,7 @@
   --radius-lg: 24px;
   --radius-pill: 30px;
   --shadow-soft: 0 30px 60px -30px rgba(17, 17, 17, 0.18);
-  --shadow-purple: 0 24px 50px -22px rgba(108, 43, 217, 0.55);
+  --shadow-purple: 0 24px 50px -22px rgba(59, 71, 255, 0.38);
 }
 
 * {
@@ -82,7 +82,7 @@ button {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--purple-main);
-  background: rgba(108, 43, 217, 0.1);
+  background: rgba(59, 71, 255, 0.1);
   padding: 7px 16px;
   border-radius: var(--radius-pill);
   margin-bottom: 18px;
@@ -567,7 +567,7 @@ button {
 .step__num {
   font-size: 17px;
   font-weight: 800;
-  color: #b9a7e8;
+  color: #aeb7ff;
   padding-top: 2px;
 }
 
@@ -663,8 +663,8 @@ button {
 }
 
 .uni:hover {
-  border-color: #d9cff5;
-  box-shadow: 0 14px 34px -22px rgba(108, 43, 217, 0.6);
+  border-color: #cdd2ff;
+  box-shadow: 0 14px 34px -22px rgba(59, 71, 255, 0.45);
   transform: translateY(-1px);
 }
 
@@ -755,7 +755,7 @@ button {
   width: 30px;
   height: 30px;
   border-radius: 10px;
-  background: rgba(108, 43, 217, 0.1);
+  background: rgba(59, 71, 255, 0.1);
   color: var(--purple-main);
   display: grid;
   place-items: center;
@@ -889,7 +889,7 @@ button {
   grid-template-columns: 1.2fr 0.8fr;
   gap: 32px;
   align-items: center;
-  box-shadow: 0 48px 90px -40px rgba(108, 43, 217, 0.75),
+  box-shadow: 0 48px 90px -40px rgba(59, 71, 255, 0.52),
     0 24px 50px -30px rgba(17, 17, 17, 0.4);
 }
 
@@ -921,16 +921,16 @@ button {
     100deg,
     transparent 0%,
     transparent 7%,
-    rgba(139, 92, 246, 0.55) 7%,
-    rgba(139, 92, 246, 0.55) 15%,
+    rgba(139, 155, 255, 0.55) 7%,
+    rgba(139, 155, 255, 0.55) 15%,
     transparent 15%,
     transparent 26%,
     rgba(226, 217, 243, 0.22) 26%,
     rgba(226, 217, 243, 0.22) 32%,
     transparent 32%,
     transparent 46%,
-    rgba(139, 92, 246, 0.32) 46%,
-    rgba(139, 92, 246, 0.32) 56%,
+    rgba(139, 155, 255, 0.32) 46%,
+    rgba(139, 155, 255, 0.32) 56%,
     transparent 56%
   );
 }
@@ -1976,8 +1976,8 @@ button {
 
 /* Screenshot-matched landing page treatment */
 :root {
-  --purple-main: #6200ff;
-  --purple-deep: #4c00d4;
+  --purple-main: #3b47ff;
+  --purple-deep: #2f3ae0;
 }
 
 body {
@@ -2638,7 +2638,7 @@ body {
   min-height: 480px;
   border-radius: 0;
   padding: 64px 100px;
-  background: #6200f5;
+  background: #3b47ff;
   grid-template-columns: 1.15fr 0.85fr;
 }
 
@@ -2653,7 +2653,7 @@ body {
   transform: rotate(-31deg);
   filter: none;
   opacity: 1;
-  background: repeating-linear-gradient(145deg, transparent 0 94px, rgba(211, 165, 255, 0.78) 94px 132px, transparent 132px 220px);
+  background: repeating-linear-gradient(145deg, transparent 0 94px, rgba(176, 184, 255, 0.78) 94px 132px, transparent 132px 220px);
 }
 
 .cta__title {
