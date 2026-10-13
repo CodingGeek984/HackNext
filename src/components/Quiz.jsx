@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useLayoutEffect, useMemo, useRef, useState } from 'react'
 import ventiQuiz from '../images/venti-quiz.webp'
 import ventiGift from '../images/venti-gift.webp'
 
@@ -224,6 +224,26 @@ export default function Quiz() {
   const [phase, setPhase] = useState('intro')
   const [stepIndex, setStepIndex] = useState(0)
   const [answers, setAnswers] = useState({})
+  const [cardHeight, setCardHeight] = useState(null)
+  const cardRef = useRef(null)
+
+  useLayoutEffect(() => {
+    const el = cardRef.current
+    if (!el) return
+    const fade = el.querySelector('.quiz-card__fade')
+    if (!fade) {
+      setCardHeight(el.scrollHeight)
+      return
+    }
+    const style = getComputedStyle(el)
+    const target = Math.ceil(
+      parseFloat(style.paddingTop) +
+        fade.getBoundingClientRect().height +
+        parseFloat(style.paddingBottom),
+    )
+    const min = parseFloat(style.minHeight)
+    setCardHeight(Number.isFinite(min) && min > target ? min : target)
+  }, [phase, stepIndex])
 
   const steps = useMemo(() => buildSteps(answers), [answers])
   const safeIndex = Math.min(stepIndex, steps.length - 1)
@@ -303,189 +323,199 @@ export default function Quiz() {
     <section className="section quiz-section" id="test">
       <div className="container">
         <div className="quiz">
-          {phase === 'intro' && (
-            <div className="quiz-card quiz-card--intro">
-              <img
-                className="quiz-card__venti"
-                src={ventiQuiz}
-                alt=""
-                aria-hidden="true"
-              />
-              <div className="quiz-badges">
-                <span className="quiz-badge">2 мин</span>
-                <span className="quiz-badge">Бесплатно</span>
-              </div>
-              <p className="quiz-intro-title">
-                Ответь на <span>8 вопросов</span> и получи личный план
-                поступления
-              </p>
-              <ul className="quiz-teaser" aria-hidden="true">
-                {TEASER.map((item) => (
-                  <li className="quiz-teaser__row" key={item.name}>
-                    <span className="quiz-teaser__emoji" aria-hidden="true">
-                      {item.emoji}
-                    </span>
-                    <span className="quiz-teaser__name">{item.name}</span>
-                    <span className="quiz-teaser__pct">{item.pct}%</span>
-                  </li>
-                ))}
-              </ul>
-              <button type="button" className="quiz-start" onClick={handleStart}>
-                Начать тест
-              </button>
-            </div>
-          )}
-
-          {phase === 'quiz' && step && (
-            <div className="quiz-card quiz-card--quiz">
-              <div className="quiz-head">
-                {safeIndex > 0 ? (
-                  <button
-                    type="button"
-                    className="quiz-back-btn"
-                    onClick={handleBack}
-                    aria-label="Назад"
-                  >
-                    <svg
-                      width="12"
-                      height="12"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M10 3 5 8l5 5"
-                        stroke="currentColor"
-                        strokeWidth="1.6"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </button>
-                ) : (
-                  <span className="quiz-head__spacer" aria-hidden="true" />
-                )}
-                <div className="quiz-track" aria-hidden="true">
-                  <span style={{ width: `${progress}%` }} />
+          <div
+            ref={cardRef}
+            className={`quiz-card quiz-card--${phase}`}
+            style={cardHeight ? { height: cardHeight } : undefined}
+          >
+            {phase === 'intro' && (
+              <div className="quiz-card__fade" key="intro">
+                <img
+                  className="quiz-card__venti"
+                  src={ventiQuiz}
+                  alt=""
+                  aria-hidden="true"
+                />
+                <div className="quiz-badges">
+                  <span className="quiz-badge">2 мин</span>
+                  <span className="quiz-badge">Бесплатно</span>
                 </div>
-                <span className="quiz-count">
-                  {counter}/{TOTAL_STEPS}
-                </span>
-              </div>
-
-              {question && (
-                <>
-                  <p className="quiz-statement">{question.text}</p>
-                  <div className="quiz-options">
-                    {OPTION_KEYS.map((key) => {
-                      const active = answers[question.id] === key
-                      return (
-                        <button
-                          key={key}
-                          type="button"
-                          className={`quiz-opt${active ? ' is-active' : ''}`}
-                          onClick={() => commit(question.id, key)}
-                        >
-                          <span className="quiz-opt__radio" aria-hidden="true" />
-                          <span className="quiz-opt__label">
-                            {question.options[key]}
-                          </span>
-                        </button>
-                      )
-                    })}
-                  </div>
-                </>
-              )}
-
-              {step.kind === 'likert' && (
-                <>
-                  <p className="quiz-statement">{LIKERTS[step.id]}</p>
-                  <div className="quiz-scale">
-                    <div className="quiz-scale__labels">
-                      <span className="quiz-scale__disagree">
-                        Не согласен
+                <p className="quiz-intro-title">
+                  Ответь на <span>8 вопросов</span> и получи личный план
+                  поступления
+                </p>
+                <ul className="quiz-teaser" aria-hidden="true">
+                  {TEASER.map((item) => (
+                    <li className="quiz-teaser__row" key={item.name}>
+                      <span className="quiz-teaser__emoji" aria-hidden="true">
+                        {item.emoji}
                       </span>
-                      <span className="quiz-scale__agree">Согласен</span>
-                    </div>
-                    <div className="quiz-scale__row">
-                      {SCALE_VALUES.map((value) => (
-                        <button
-                          key={value}
-                          type="button"
-                          aria-label={String(value)}
-                          className={`quiz-scale__dot${
-                            answers[step.id] === value ? ' is-active' : ''
-                          }`}
-                          onClick={() => commit(step.id, value)}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </>
-              )}
-            </div>
-          )}
-
-          {phase === 'result' && (
-            <div className="quiz-card quiz-card--result">
-              <img
-                className="quiz-card__venti quiz-card__venti--gift"
-                src={ventiGift}
-                alt=""
-                aria-hidden="true"
-              />
-              <span className="quiz-label">Готово! Твой результат</span>
-              <h3 className="quiz-result-title">
-                Мы подобрали твои направления
-              </h3>
-              <p className="quiz-result-sub">
-                Мы выделили 3 направления и разбор твоих сильных сторон.
-              </p>
-
-              <ul className="quiz-dirs">
-                {directions.slice(0, 3).map((item) => (
-                  <li className="quiz-dir" key={item.id}>
-                    <span className="quiz-dir__emoji" aria-hidden="true">
-                      {item.emoji}
-                    </span>
-                    <span className="quiz-dir__name">{item.title}</span>
-                    <span className="quiz-dir__match">{item.pct}%</span>
-                  </li>
-                ))}
-              </ul>
-
-              {directions[0] && (
-                <>
-                  <p className="quiz-prof-title">Профессии</p>
-                  <div className="quiz-profs">
-                    {directions[0].professions.map((profession) => (
-                      <span className="quiz-prof" key={profession}>
-                        {profession}
-                      </span>
-                    ))}
-                  </div>
-                </>
-              )}
-
-              <div className="quiz-actions">
-                <a
-                  className="quiz-cta"
-                  href={REGISTER_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Создать аккаунт и открыть результат
-                </a>
+                      <span className="quiz-teaser__name">{item.name}</span>
+                      <span className="quiz-teaser__pct">{item.pct}%</span>
+                    </li>
+                  ))}
+                </ul>
                 <button
                   type="button"
-                  className="quiz-retake"
-                  onClick={handleReset}
+                  className="quiz-start"
+                  onClick={handleStart}
                 >
-                  Пройти заново
+                  Начать тест
                 </button>
               </div>
-            </div>
-          )}
+            )}
+
+            {phase === 'quiz' && step && (
+              <div className="quiz-card__fade" key={`quiz-${safeIndex}`}>
+                <div className="quiz-head">
+                  {safeIndex > 0 ? (
+                    <button
+                      type="button"
+                      className="quiz-back-btn"
+                      onClick={handleBack}
+                      aria-label="Назад"
+                    >
+                      <svg
+                        width="12"
+                        height="12"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M10 3 5 8l5 5"
+                          stroke="currentColor"
+                          strokeWidth="1.6"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </button>
+                  ) : (
+                    <span className="quiz-head__spacer" aria-hidden="true" />
+                  )}
+                  <div className="quiz-track" aria-hidden="true">
+                    <span style={{ width: `${progress}%` }} />
+                  </div>
+                  <span className="quiz-count">
+                    {counter}/{TOTAL_STEPS}
+                  </span>
+                </div>
+
+                {question && (
+                  <>
+                    <p className="quiz-statement">{question.text}</p>
+                    <div className="quiz-options">
+                      {OPTION_KEYS.map((key) => {
+                        const active = answers[question.id] === key
+                        return (
+                          <button
+                            key={key}
+                            type="button"
+                            className={`quiz-opt${active ? ' is-active' : ''}`}
+                            onClick={() => commit(question.id, key)}
+                          >
+                            <span className="quiz-opt__radio" aria-hidden="true" />
+                            <span className="quiz-opt__label">
+                              {question.options[key]}
+                            </span>
+                          </button>
+                        )
+                      })}
+                    </div>
+                  </>
+                )}
+
+                {step.kind === 'likert' && (
+                  <>
+                    <p className="quiz-statement">{LIKERTS[step.id]}</p>
+                    <div className="quiz-scale">
+                      <div className="quiz-scale__labels">
+                        <span className="quiz-scale__disagree">
+                          Не согласен
+                        </span>
+                        <span className="quiz-scale__agree">Согласен</span>
+                      </div>
+                      <div className="quiz-scale__row">
+                        {SCALE_VALUES.map((value) => (
+                          <button
+                            key={value}
+                            type="button"
+                            aria-label={String(value)}
+                            className={`quiz-scale__dot${
+                              answers[step.id] === value ? ' is-active' : ''
+                            }`}
+                            onClick={() => commit(step.id, value)}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+            )}
+
+            {phase === 'result' && (
+              <div className="quiz-card__fade" key="result">
+                <img
+                  className="quiz-card__venti quiz-card__venti--gift"
+                  src={ventiGift}
+                  alt=""
+                  aria-hidden="true"
+                />
+                <span className="quiz-label">Готово! Твой результат</span>
+                <h3 className="quiz-result-title">
+                  Мы подобрали твои направления
+                </h3>
+                <p className="quiz-result-sub">
+                  Мы выделили 3 направления и разбор твоих сильных сторон.
+                </p>
+
+                <ul className="quiz-dirs">
+                  {directions.slice(0, 3).map((item) => (
+                    <li className="quiz-dir" key={item.id}>
+                      <span className="quiz-dir__emoji" aria-hidden="true">
+                        {item.emoji}
+                      </span>
+                      <span className="quiz-dir__name">{item.title}</span>
+                      <span className="quiz-dir__match">{item.pct}%</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {directions[0] && (
+                  <>
+                    <p className="quiz-prof-title">Профессии</p>
+                    <div className="quiz-profs">
+                      {directions[0].professions.map((profession) => (
+                        <span className="quiz-prof" key={profession}>
+                          {profession}
+                        </span>
+                      ))}
+                    </div>
+                  </>
+                )}
+
+                <div className="quiz-actions">
+                  <a
+                    className="quiz-cta"
+                    href={REGISTER_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Создать аккаунт и открыть результат
+                  </a>
+                  <button
+                    type="button"
+                    className="quiz-retake"
+                    onClick={handleReset}
+                  >
+                    Пройти заново
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </section>

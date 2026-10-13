@@ -1009,11 +1009,27 @@ button {
 .quiz-card {
   position: relative;
   border-radius: 28px;
+  overflow: hidden;
+  transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.quiz-card__fade {
+  animation: quiz-in 0.35s ease both;
+}
+
+@keyframes quiz-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .quiz-card--intro {
   position: relative;
-  overflow: hidden;
   background: #dfff00;
   padding: 46px 48px;
   min-height: 400px;
