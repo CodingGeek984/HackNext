@@ -40,7 +40,7 @@ export default function Hero() {
             <a className="nav__link" href="#compare">
               Почему Ventorme
             </a>
-            <a className="nav__login" href="#cta">
+            <a className="nav__login" href="https://ventorme.ai/register?utm_source=hacknext&utm_campaign=team-052" target="_blank" rel="noopener noreferrer">
               Войти
             </a>
           </nav>
@@ -58,7 +58,7 @@ export default function Hero() {
               хватает для сильной заявки.
             </p>
             <div className="hero__cta-row">
-              <a className="btn btn-lime btn-lg" href="#cta">
+              <a className="btn btn-lime btn-lg" href="https://ventorme.ai/register?utm_source=hacknext&utm_campaign=team-052" target="_blank" rel="noopener noreferrer">
                 Начать бесплатно
               </a>
               <span className="hero__note">Без карты · 2 минуты на старт</span>

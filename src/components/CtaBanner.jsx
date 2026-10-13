@@ -16,7 +16,7 @@ export default function CtaBanner() {
               Найди подходящее направление и узнай свой уровень SAT и IELTS. Начни
               бесплатно в Ventorme.
             </p>
-            <a className="btn btn-lime btn-lg cta__btn" href="#top">
+            <a className="btn btn-lime btn-lg cta__btn" href="https://ventorme.ai/register?utm_source=hacknext&utm_campaign=team-052" target="_blank" rel="noopener noreferrer">
               Начать бесплатно
             </a>
           </div>

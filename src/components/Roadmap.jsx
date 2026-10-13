@@ -115,7 +115,7 @@ export default function Roadmap() {
         <span className="roadmap__bar-text">
           Доступно по платной подписке Plus
         </span>
-        <a className="btn btn-lime roadmap__bar-btn" href="#cta">
+        <a className="btn btn-lime roadmap__bar-btn" href="https://ventorme.ai/register?utm_source=hacknext&utm_campaign=team-052" target="_blank" rel="noopener noreferrer">
           Посмотреть Plus
           <IconArrow />
         </a>
@@ -249,7 +249,7 @@ export default function Roadmap() {
           <div className="roadmap__panel">{renderPanel(true)}</div>
         </div>
 
-        <a className="btn btn-lime roadmap__mobile-cta" href="#cta">
+        <a className="btn btn-lime roadmap__mobile-cta" href="https://ventorme.ai/register?utm_source=hacknext&utm_campaign=team-052" target="_blank" rel="noopener noreferrer">
           Посмотреть Plus
           <IconArrow />
         </a>
