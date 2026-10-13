@@ -1612,9 +1612,12 @@ button {
     width: 100%;
   }
 
-  .hero__note,
-  .hero__cta-btn {
+  .hero__note {
     display: none;
+  }
+
+  .hero__cta-btn {
+    margin-top: 12px;
   }
 
   .hero__card {
