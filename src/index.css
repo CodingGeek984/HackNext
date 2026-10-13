@@ -2605,3 +2605,141 @@ body {
     height: 128px;
   }
 }
+
+/* Keep the reference treatment after the responsive component styles above. */
+.section#compare .container {
+  max-width: 1104px;
+}
+
+.compare {
+  border-radius: 0 0 28px 28px;
+  padding: 30px 28px;
+}
+
+.compare tbody td {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.compare tbody td:nth-child(2),
+.compare tbody td:nth-child(3) {
+  text-align: center;
+}
+
+.cta-wrap {
+  padding: 40px 0 96px;
+}
+
+.cta-wrap > .container {
+  max-width: 1248px;
+}
+
+.cta {
+  min-height: 480px;
+  border-radius: 0;
+  padding: 64px 100px;
+  background: #6200f5;
+  grid-template-columns: 1.15fr 0.85fr;
+}
+
+.cta__glow {
+  display: none;
+}
+
+.cta__stripes {
+  inset: -32% -10%;
+  width: auto;
+  height: auto;
+  transform: rotate(-31deg);
+  filter: none;
+  opacity: 1;
+  background: repeating-linear-gradient(145deg, transparent 0 94px, rgba(211, 165, 255, 0.78) 94px 132px, transparent 132px 220px);
+}
+
+.cta__title {
+  max-width: 680px;
+  font-size: clamp(2.5rem, 3.2vw, 2.9rem);
+  line-height: 1.02;
+}
+
+.cta__sub {
+  max-width: 650px;
+  font-size: 19px;
+  line-height: 1.45;
+  margin-bottom: 50px;
+}
+
+.cta__media {
+  min-height: 340px;
+  align-items: center;
+  transform: translateX(30px);
+}
+
+.cta__orb {
+  right: 0;
+  bottom: auto;
+  top: 50%;
+  width: 230px;
+  height: 230px;
+  transform: translateY(-50%);
+  background: var(--lime-accent);
+  box-shadow: none;
+}
+
+.cta__mascot {
+  height: 300px;
+  transform: translateY(8px);
+  filter: none;
+}
+
+.cta__btn {
+  min-width: 220px;
+  min-height: 59px;
+  border-radius: 14px;
+}
+
+@media (max-width: 640px) {
+  .compare {
+    border-radius: 0;
+    padding: 22px 18px;
+  }
+
+  .compare tbody td {
+    padding: 13px 5px;
+  }
+
+  .cta-wrap {
+    padding: 0;
+  }
+
+  .section#compare .container,
+  .cta-wrap > .container {
+    max-width: none;
+  }
+
+  .cta {
+    min-height: 0;
+    padding: 36px 24px 42px;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .cta__media {
+    min-height: 200px;
+    transform: none;
+  }
+
+  .cta__orb {
+    width: 168px;
+    height: 168px;
+  }
+
+  .cta__mascot {
+    height: 220px;
+  }
+
+  .cta__btn {
+    min-width: 0;
+    min-height: 0;
+  }
+}
