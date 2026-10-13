@@ -1,4 +1,4 @@
-import mascot from '../images/Rectangle.png'
+import mascot from '../images/img.png'
 
 export default function CtaBanner() {
   return (

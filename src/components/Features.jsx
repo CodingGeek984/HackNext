@@ -1,5 +1,5 @@
 import examMascot from '../images/Exam mascot from Ventorme.png'
-import graduationMascot from '../images/img.png'
+import graduationMascot from '../images/Rectangle.png'
 import ribbon from '../images/Path-1.png'
 import accentArc from '../assets/hero.png'
 
